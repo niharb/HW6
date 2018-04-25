@@ -57,6 +57,26 @@ int main()
   /* Display the Matrix */
   drawCDKMatrix(myMatrix, true);
 
+  string fileName = "cs3377.bin"; 
+  ifstream binInfile(fileName, ios::in|ios::binary); 
+  BinaryFileHeader *myHeader = new BinaryFileHeader();
+  BinaryFileRecord *myRecord = new BinaryFileRecord();
+
+  binInfile.read((char *) myHeader, sizeof(BinaryFileHeader)); 
+  
+  snprintf(MagicNumBuff, 32, "Magic: 0x%X", myHeader->Magic); 
+  snprintf(VersionBuff, 32, "Version: %u", myHeader->vNumber); 
+  snprintf(RecordBuff, 64, "NumRecords: %lu", myHeader->Records);
+
+  for(unsigned int i = 0; i < myHeader->Records && j <= 5; i++)
+  { 
+    binInfile.read((char *) Record, sizeof(BinaryFileRecord)); 
+    snprintf(bufferStringLen, 32, "strlen: %u", myRecord->strLength); 
+    setCDKMatrixCell(myMatrix, j, 1, bufferStringLen); 
+    setCDKMatrixCell(myMatrix, j, 2, myRecord->stringBuffer); 
+    j++;
+  }
+
   /*
    * Dipslay a message
    */
