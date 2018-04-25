@@ -16,17 +16,17 @@ LDLIBS = -lcdk -lcurses
 
 #
 # We choose the project name.  This is used in building the file name for the backup target
-PROJECTNAME = cdkexampleproject
+PROJECTNAME = cdkproject
 
 #
 # We choose the source files to include and name the output
-SRCS = cdkexample.cc
+SRCS = cdkfile.cc
 
 #
 # We choose the name of the executable to be created
-EXEC = cdkexample
+EXEC = cdkoutput
 
-OBJS = cdkexample.o
+OBJS = cdkfile.o
 
 #
 # You normally don't need to change anything below here.

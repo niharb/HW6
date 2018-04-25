@@ -23,13 +23,6 @@ int main()
   CDKSCREEN	*cdkscreen;
   CDKMATRIX     *myMatrix;           // CDK Screen Matrix
 
-  // Remember that matrix starts out at 1,1.
-  // Since arrays start out at 0, the first entries
-  // below ("R0", and "C0") are just placeholders
-  // 
-  // Finally... make sure your arrays have enough entries given the
-  // values you choose to set for MATRIX_WIDTH and MATRIX_HEIGHT
-  // above.
 
   const char 		*rowTitles[] = {" ", "a", "b", "c", "d", "e"};
   const char 		*columnTitles[] = {" ", "a", "b", "c", "d", "e"};
@@ -38,8 +31,6 @@ int main()
 
   /*
    * Initialize the Cdk screen.
-   *
-   * Make sure the putty terminal is large enough
    */
   window = initscr();
   cdkscreen = initCDKScreen(window);
@@ -48,7 +39,7 @@ int main()
   initCDKColor();
 
   /*
-   * Create the matrix.  Need to manually cast (const char**) to (char **)
+   * Create the matrix
   */
   myMatrix = newCDKMatrix(cdkscreen, CENTER, CENTER, MATRIX_HEIGHT, MATRIX_WIDTH, MATRIX_HEIGHT, MATRIX_WIDTH,
 			  MATRIX_NAME_STRING, (char **) rowTitles, (char **) columnTitles, boxWidths,
@@ -69,7 +60,7 @@ int main()
   setCDKMatrixCell(myMatrix, 2, 2, "Test Message");
   drawCDKMatrix(myMatrix, true);    /* required  */
 
-  /* So we can see results, pause until a key is pressed. */
+  /* see results, pause until a key is pressed. */
   unsigned char x;
   cin >> x;
 
